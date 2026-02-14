@@ -21,8 +21,13 @@ function DashboardPage({ user }: DashboardPageProps) {
     const { data: dashboardData } = useQuery({
         queryKey: ['dashboard'],
         queryFn: async () => {
-            const response = await api.get('/user/dashboard');
-            return response.data.data;
+            // Mock response since backend is missing
+            await new Promise(resolve => setTimeout(resolve, 500));
+            return {
+                quizProgress: user?.quizProgress || { totalScore: 0, completed: [] },
+                achievements: user?.achievements || [],
+                bookmarkedResources: user?.bookmarkedResources || []
+            };
         },
         enabled: !!user,
     });

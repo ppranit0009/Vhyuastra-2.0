@@ -1,4 +1,3 @@
-// Navbar.tsx
 import { Link } from 'react-router-dom';
 import { authService } from '../services/authService';
 import type { User } from '../types';
@@ -24,12 +23,18 @@ export default function Navbar({ user, setUser }: NavbarProps) {
                     <span className="logo-text">Human Firewall</span>
                 </Link>
                 <div className="nav-links">
-                    <a href="#threats">The Threat</a>
+                    <Link to="/threats">The Threat</Link>
                     <Link to="/quiz">Test Yourself</Link>
-                    <a href="#resources">Resources</a>
+                    <Link to="/resources">Resources</Link>
                     {user ? (
                         <>
                             <Link to="/dashboard">Dashboard</Link>
+                            <Link to="/profile" className="nav-link" style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }} title="Profile">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" style={{ width: '24px', height: '24px' }}>
+                                    <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                                    <circle cx="12" cy="7" r="4"></circle>
+                                </svg>
+                            </Link>
                             <button onClick={handleLogout} className="nav-cta">Logout</button>
                         </>
                     ) : (
