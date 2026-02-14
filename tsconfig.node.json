@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 {
   "compilerOptions": {
     "composite": true,
@@ -9,3 +10,16 @@
   },
   "include": ["vite.config.ts"]
 }
+=======
+{
+  "compilerOptions": {
+    "composite": true,
+    "skipLibCheck": true,
+    "module": "ESNext",
+    "moduleResolution": "bundler",
+    "allowSyntheticDefaultImports": true,
+    "types": ["node"]
+  },
+  "include": ["vite.config.ts"]
+}
+>>>>>>> 180e4f36e8dcd3fd085fb36d46ecfb434826752c
