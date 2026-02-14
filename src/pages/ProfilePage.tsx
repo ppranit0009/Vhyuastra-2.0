@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import Navbar from '../components/Navbar';
@@ -13,14 +13,29 @@ interface ProfilePageProps {
 
 function ProfilePage({ user, setUser }: ProfilePageProps) {
     const navigate = useNavigate();
+    const [isEditing, setIsEditing] = useState(false);
+    const [formData, setFormData] = useState({
+        name: user?.name || '',
+        email: user?.email || ''
+    });
 
     useEffect(() => {
         if (!user) {
             navigate('/login');
+        } else {
+            setFormData({
+                name: user.name,
+                email: user.email
+            });
         }
     }, [user, navigate]);
 
     if (!user) return null;
+
+    const handleSave = () => {
+        setUser({ ...user, name: formData.name, email: formData.email });
+        setIsEditing(false);
+    };
 
     const stats = [
         { label: 'Security Clearance', value: 'Level 4', color: 'var(--color-primary)' },
@@ -94,7 +109,23 @@ function ProfilePage({ user, setUser }: ProfilePageProps) {
                                         {user.name.charAt(0).toUpperCase()}
                                     </span>
                                 </div>
-                                <h2 style={{ fontSize: '2rem', marginBottom: '0.5rem' }}>{user.name}</h2>
+                                {isEditing ? (
+                                    <input
+                                        type="text"
+                                        value={formData.name}
+                                        onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+                                        className="form-input"
+                                        style={{
+                                            textAlign: 'center',
+                                            fontSize: '1.5rem',
+                                            marginBottom: '0.5rem',
+                                            width: '100%',
+                                            background: 'rgba(0,0,0,0.3)'
+                                        }}
+                                    />
+                                ) : (
+                                    <h2 style={{ fontSize: '2rem', marginBottom: '0.5rem' }}>{user.name}</h2>
+                                )}
                                 <p style={{ color: 'var(--color-primary)', fontFamily: 'monospace', letterSpacing: '0.1em' }}>
                                     {user.role.toUpperCase()} OPERATIVE
                                 </p>
@@ -103,7 +134,17 @@ function ProfilePage({ user, setUser }: ProfilePageProps) {
                             <div style={{ display: 'grid', gap: '1.5rem' }}>
                                 <div>
                                     <label style={{ color: 'var(--color-text-secondary)', fontSize: '0.875rem', display: 'block', marginBottom: '0.5rem' }}>Email Frequency</label>
-                                    <div style={{ color: 'white', fontSize: '1.125rem' }}>{user.email}</div>
+                                    {isEditing ? (
+                                        <input
+                                            type="email"
+                                            value={formData.email}
+                                            onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+                                            className="form-input"
+                                            style={{ width: '100%', background: 'rgba(0,0,0,0.3)' }}
+                                        />
+                                    ) : (
+                                        <div style={{ color: 'white', fontSize: '1.125rem' }}>{user.email}</div>
+                                    )}
                                 </div>
                                 <div>
                                     <label style={{ color: 'var(--color-text-secondary)', fontSize: '0.875rem', display: 'block', marginBottom: '0.5rem' }}>Account Status</label>
@@ -146,19 +187,35 @@ function ProfilePage({ user, setUser }: ProfilePageProps) {
 
                             {/* Action Buttons */}
                             <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1rem' }}>
-                                <button className="btn" style={{
-                                    background: 'rgba(255, 255, 255, 0.05)',
-                                    border: '1px solid rgba(255, 255, 255, 0.1)'
-                                }}>
-                                    Edit Profile
-                                </button>
-                                <button className="btn" style={{
-                                    background: 'rgba(255, 51, 102, 0.1)',
-                                    border: '1px solid var(--color-danger)',
-                                    color: 'var(--color-danger)'
-                                }} onClick={() => setUser(null)}>
-                                    Log Out
-                                </button>
+                                {isEditing ? (
+                                    <>
+                                        <button className="btn btn-primary" onClick={handleSave}>
+                                            Save Changes
+                                        </button>
+                                        <button className="btn" style={{
+                                            background: 'rgba(255, 255, 255, 0.05)',
+                                            border: '1px solid rgba(255, 255, 255, 0.1)'
+                                        }} onClick={() => setIsEditing(false)}>
+                                            Cancel
+                                        </button>
+                                    </>
+                                ) : (
+                                    <>
+                                        <button className="btn" style={{
+                                            background: 'rgba(255, 255, 255, 0.05)',
+                                            border: '1px solid rgba(255, 255, 255, 0.1)'
+                                        }} onClick={() => setIsEditing(true)}>
+                                            Edit Profile
+                                        </button>
+                                        <button className="btn" style={{
+                                            background: 'rgba(255, 51, 102, 0.1)',
+                                            border: '1px solid var(--color-danger)',
+                                            color: 'var(--color-danger)'
+                                        }} onClick={() => setUser(null)}>
+                                            Log Out
+                                        </button>
+                                    </>
+                                )}
                             </div>
                         </div>
                     </div>

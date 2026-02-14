@@ -5,7 +5,7 @@ interface QuizPreviewProps {
     user: User | null;
 }
 
-export default function QuizPreview({ user }: QuizPreviewProps) {
+export default function QuizPreview({ user: _user }: QuizPreviewProps) {
     return (
         <section className="quiz-section" id="quiz">
             <div className="container">

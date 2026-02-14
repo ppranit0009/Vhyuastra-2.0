@@ -18,7 +18,7 @@ export default function GlitchText({ text, className = '' }: GlitchTextProps) {
                 setDisplayText(prev =>
                     prev
                         .split('')
-                        .map((char, index) => {
+                        .map((_char, index) => {
                             if (index < iteration) {
                                 return text[index];
                             }

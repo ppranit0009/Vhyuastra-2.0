@@ -2,7 +2,7 @@ import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useQuery } from '@tanstack/react-query';
 import Navbar from '../components/Navbar';
-import api from '../services/api';
+
 import type { User } from '../types';
 
 interface DashboardPageProps {

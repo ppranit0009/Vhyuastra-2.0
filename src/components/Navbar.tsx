@@ -24,6 +24,7 @@ export default function Navbar({ user, setUser }: NavbarProps) {
                 </Link>
                 <div className="nav-links">
                     <Link to="/threats">The Threat</Link>
+                    <Link to="/analysis">AI Analysis</Link>
                     <Link to="/quiz">Test Yourself</Link>
                     <Link to="/resources">Resources</Link>
                     {user ? (
