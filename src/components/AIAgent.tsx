@@ -5,7 +5,7 @@ import { useNavigate } from 'react-router-dom';
 export default function AIAgent() {
     const [isOpen, setIsOpen] = useState(false);
     const [messages, setMessages] = useState<Array<{ type: 'bot' | 'user', text: string }>>([
-        { type: 'bot', text: 'Hello Agent. I am Vhyuastra AI. How can I assist you with threat detection today?' }
+        { type: 'bot', text: 'Hello Agent. I am Sentinel AI. How can I assist you with threat detection today?' }
     ]);
     const [inputText, setInputText] = useState('');
     const messagesEndRef = useRef<HTMLDivElement>(null);
@@ -93,7 +93,7 @@ export default function AIAgent() {
                                     background: 'var(--color-success)',
                                     boxShadow: '0 0 10px var(--color-success)'
                                 }} />
-                                <span style={{ fontWeight: 'bold', color: 'var(--color-primary)' }}>Vhyuastra AI</span>
+                                <span style={{ fontWeight: 'bold', color: 'var(--color-primary)' }}>Sentinel AI</span>
                             </div>
                         </div>
 
