@@ -1,0 +1,20 @@
+<svg width="512" height="512" viewBox="0 0 512 512" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="shield_gradient" x1="0" y1="0" x2="512" y2="512" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#6366f1" />
+      <stop offset="1" stop-color="#a855f7" />
+    </linearGradient>
+    <filter id="glow" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="20" result="coloredBlur"/>
+      <feMerge>
+        <feMergeNode in="coloredBlur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+  <g filter="url(#glow)">
+    <path d="M256 32L64 117.3V256C64 366.9 145.9 468.5 256 496C366.1 468.5 448 366.9 448 256V117.3L256 32Z" fill="url(#shield_gradient)"/>
+    <path d="M256 85.3V442.7C346.7 418.1 405.3 332.8 405.3 256V144L256 85.3Z" fill="white" fill-opacity="0.15"/>
+    <path d="M256 160L213.3 234.7H298.7L256 160ZM256 352L298.7 277.3H213.3L256 352Z" fill="white" fill-opacity="0.9"/>
+  </g>
+</svg>
