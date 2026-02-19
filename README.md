@@ -91,7 +91,7 @@ Frontend will run on `http://localhost:5173`
 ## 📁 Project Structure
 
 ```
-Vhyuastra 2.0/
+Human Firewall - AI Threat Defense Training/
 ├── server/
 │   ├── src/
 │   │   ├── config/
